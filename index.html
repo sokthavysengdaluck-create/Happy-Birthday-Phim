@@ -1,0 +1,584 @@
+<!doctype html>
+<html lang="lo">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Happy Birthday, Phimphailin ✨</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Noto+Sans+Lao:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,500;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-dark: #13111c;
+  --bg-gradient: radial-gradient(circle at 50% 0%, #231d36 0%, #13111c 65%, #0d0b14 100%);
+  --card-bg: rgba(28, 25, 41, 0.72);
+  --card-border: rgba(255, 255, 255, 0.08);
+  --pink-accent: #f8a5c2;
+  --pink-glow: rgba(248, 165, 194, 0.45);
+  --pink-btn: #f78fb3;
+  --pink-btn-text: #2c131d;
+  --text-main: #f5f3f7;
+  --text-muted: #a69eb8;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Noto Sans Lao", system-ui, -apple-system, sans-serif;
+  color: var(--text-main);
+  background: var(--bg-dark);
+  background-image: var(--bg-gradient);
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+#bokeh-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+button, input, textarea { font: inherit; }
+
+button {
+  cursor: pointer;
+  border: 0;
+  border-radius: 10px;
+  padding: 11px 22px;
+  background: var(--pink-btn);
+  color: var(--pink-btn-text);
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  box-shadow: 0 4px 20px rgba(247, 143, 179, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(247, 143, 179, 0.5);
+  background: #f8a5c2;
+}
+
+button.ghost {
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid var(--card-border);
+  box-shadow: none;
+}
+
+button.ghost:hover {
+  color: var(--text-main);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+header {
+  position: relative;
+  z-index: 2;
+  padding: 22px 6vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.brand {
+  font-family: "Playfair Display", "Noto Sans Lao", serif;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--pink-accent);
+  font-size: 1.05rem;
+}
+
+.tiny {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+main {
+  position: relative;
+  z-index: 2;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 10px 20px 80px;
+}
+
+.panel {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+  border-radius: 20px;
+  padding: clamp(28px, 5vw, 48px);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  margin-bottom: 24px;
+}
+
+.center { text-align: center; }
+.hidden { display: none !important; }
+
+.luxury-title {
+  font-family: "Great Vibes", "Playfair Display", cursive;
+  font-size: clamp(2.8rem, 7vw, 4.6rem);
+  font-weight: 400;
+  color: #ffe6f0;
+  margin: 10px 0 14px;
+  line-height: 1.15;
+  text-shadow: 0 0 18px var(--pink-glow), 0 0 36px rgba(248, 165, 194, 0.25);
+}
+
+h2 {
+  font-family: "Playfair Display", "Noto Sans Lao", serif;
+  color: var(--text-main);
+  font-size: 1.45rem;
+  margin-top: 0;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.sub {
+  letter-spacing: 3px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--pink-accent);
+  opacity: 0.9;
+}
+
+.subtitle-desc {
+  color: var(--text-muted);
+  font-size: 0.96rem;
+  line-height: 1.7;
+  max-width: 540px;
+  margin: 0 auto 24px;
+}
+
+input {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(15, 13, 23, 0.65);
+  border-radius: 10px;
+  padding: 13px 16px;
+  color: var(--text-main);
+  outline: none;
+  transition: border-color 0.2s;
+  margin-bottom: 10px;
+}
+
+input:focus { border-color: var(--pink-accent); }
+
+.gate { max-width: 460px; margin: 8vh auto; }
+.lock { font-size: 2.4rem; margin-bottom: 10px; filter: drop-shadow(0 0 12px var(--pink-glow)); }
+.gift { font-size: 4.5rem; animation: bob 2.4s infinite ease-in-out; margin: 14px 0; cursor: pointer; }
+
+.cake {
+  font-size: clamp(5rem, 15vw, 7.5rem);
+  line-height: 1.2;
+  filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.5));
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  transition: transform 0.2s ease;
+  margin: 10px 0;
+}
+.cake:hover { transform: scale(1.05); }
+
+@keyframes bob { 50% { transform: translateY(-10px) rotate(2deg); } }
+
+.story-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 22px;
+  text-align: left;
+}
+
+.story-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px 18px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+}
+
+.story-item:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(248, 165, 194, 0.3);
+  transform: translateX(4px);
+}
+
+.story-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--pink-accent);
+  box-shadow: 0 0 10px var(--pink-accent);
+  margin-top: 6px;
+  flex-shrink: 0;
+}
+
+.story-dot.green {
+  background: #55efc4;
+  box-shadow: 0 0 10px #55efc4;
+}
+
+.story-info strong {
+  display: block;
+  font-size: 0.98rem;
+  color: var(--text-main);
+  margin-bottom: 3px;
+}
+
+.story-info span {
+  font-size: 0.83rem;
+  color: var(--text-muted);
+}
+
+.section { margin-top: 20px; }
+
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 14px;
+  margin: 18px 0;
+}
+
+.photo-grid img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.song {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--card-border);
+  padding: 16px;
+  border-radius: 12px;
+  margin: 14px 0;
+}
+
+.song a { color: var(--pink-accent); font-size: 0.85rem; text-decoration: none; display: inline-block; margin-top: 10px; }
+.song a:hover { text-decoration: underline; }
+
+.letter {
+  background: rgba(255, 255, 255, 0.03);
+  border-left: 3px solid var(--pink-accent);
+  border-top: 1px solid var(--card-border);
+  border-right: 1px solid var(--card-border);
+  border-bottom: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 22px;
+  margin: 14px 0;
+  white-space: pre-wrap;
+  line-height: 1.8;
+  font-size: 0.95rem;
+}
+
+.letter b {
+  color: var(--pink-accent);
+  font-size: 1.1rem;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.floating-pill {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 10;
+  background: rgba(255, 230, 240, 0.92);
+  color: #2c131d;
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  transition: transform 0.2s;
+}
+.floating-pill:hover { transform: scale(1.04); }
+
+footer {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 30px 10px;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  letter-spacing: 0.5px;
+}
+
+@media(max-width: 520px) {
+  header { padding: 16px 18px; }
+  .panel { border-radius: 16px; padding: 24px 18px; }
+}
+</style>
+</head>
+<body>
+
+<canvas id="bokeh-canvas"></canvas>
+
+<header>
+  <div class="brand">✦ FROM OSHI</div>
+  <div class="tiny">A little surprise for Phimphailin</div>
+</header>
+
+<main>
+  <!-- 1. PASSWORD GATE -->
+  <section id="gate" class="panel gate center">
+    <div class="lock">🔐</div>
+    <div class="sub">PRIVATE ACCESS</div>
+    <h1 class="luxury-title" style="font-size: 2.8rem;">Welcome, Phimphailin</h1>
+    <p class="subtitle-desc" style="margin-bottom: 18px;">ກະລຸນາໃສ່ລະຫັດຜ່ານເພື່ອເປີດຂອງຂວັນພິເສດຂອງເຈົ້າ</p>
+    <input id="pass" type="password" inputmode="numeric" placeholder="Enter your password" maxlength="20" style="text-align: center; letter-spacing: 3px;">
+    <p id="err" class="tiny" style="color: #ff7675; min-height: 18px;"></p>
+    <button id="unlock" style="width: 100%;">Unlock My Gift ✨</button>
+  </section>
+
+  <!-- 2. GIFT BOX -->
+  <section id="gift" class="panel gate center hidden">
+    <div class="sub">SOMETHING SPECIAL IS WAITING</div>
+    <div class="gift" onclick="document.getElementById('openGift').click()">🎁</div>
+    <h1 class="luxury-title" style="font-size: 2.8rem;">A Gift For You</h1>
+    <p class="subtitle-desc">ກົດທີ່ກ່ອງຂອງຂວັນດ້ານລຸ່ມເພື່ອເປີດ</p>
+    <button id="openGift">Open my gift ✨</button>
+  </section>
+
+  <!-- 3. MAIN HOME -->
+  <section id="home" class="hidden">
+    <div class="panel center">
+      <div class="sub">CELEBRATING YOU TODAY</div>
+      <h1 class="luxury-title">Happy Birthday, Phimphailin ✨</h1>
+      <p class="subtitle-desc">
+        You are my every sunrise and my favorite dream.
+      </p>
+      <button onclick="document.getElementById('story-card').scrollIntoView({behavior:'smooth'})">See our story ↓</button>
+    </div>
+
+    <div id="story-card" class="panel">
+      <h2>Our Little Universe</h2>
+      <p class="tiny" style="margin-bottom: 18px;">Little moments & surprises made just for you — click to open them.</p>
+      
+      <div class="story-list">
+        <div class="story-item" onclick="showSection('music')">
+          <span class="story-dot"></span>
+          <div class="story-info">
+            <strong>Our Songs — Special Playlist</strong>
+            <span>4 ບົດເພງພິເສດສຳລັບ Phimphailin</span>
+          </div>
+        </div>
+
+        <div class="story-item" onclick="showSection('photos')">
+          <span class="story-dot"></span>
+          <div class="story-info">
+            <strong>Our Memories — Photo Gallery</strong>
+            <span>ຮູບພາບຄວາມຊົງຈຳທັງ 6 ຮູບ</span>
+          </div>
+        </div>
+
+        <div class="story-item" onclick="showSection('letters')">
+          <span class="story-dot"></span>
+          <div class="story-info">
+            <strong>Letters for You — From Heart</strong>
+            <span>ຂໍ້ຄວາມ ແລະ ຄຳອວຍພອນວັນເກີດ</span>
+          </div>
+        </div>
+
+        <div class="story-item" onclick="document.getElementById('cake-card').scrollIntoView({behavior:'smooth'})">
+          <span class="story-dot green"></span>
+          <div class="story-info">
+            <strong>Make a Wish — Birthday Cake</strong>
+            <span>ອະທິຖານ ແລະ ກົດເປົ່າເຄັກວັນເກີດ</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Music Section with 4 YouTube Songs -->
+    <section id="music" class="panel section hidden">
+      <h2>🎵 Our Songs</h2>
+      <p class="tiny">ບົດເພງພິເສດທີ່ເລືອກມອບໃຫ້</p>
+      
+      <div class="song">
+        <b>▶ Song 1</b>
+        <div style="position:relative;padding-top:56.25%;margin-top:10px">
+          <iframe src="https://www.youtube-nocookie.com/embed/mGgJpRuv1uo" style="position:absolute;inset:0;width:100%;height:100%;border:0;border-radius:10px" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+        <a href="https://youtu.be/mGgJpRuv1uo" target="_blank" rel="noopener">ເປີດໃນ YouTube ↗</a>
+      </div>
+
+      <div class="song">
+        <b>▶ Song 2</b>
+        <div style="position:relative;padding-top:56.25%;margin-top:10px">
+          <iframe src="https://www.youtube-nocookie.com/embed/6hzrDeceEKc" style="position:absolute;inset:0;width:100%;height:100%;border:0;border-radius:10px" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+        <a href="https://youtu.be/6hzrDeceEKc" target="_blank" rel="noopener">ເປີດໃນ YouTube ↗</a>
+      </div>
+
+      <div class="song">
+        <b>▶ Song 3</b>
+        <div style="position:relative;padding-top:56.25%;margin-top:10px">
+          <iframe src="https://www.youtube-nocookie.com/embed/pt-0LgCVcUI" style="position:absolute;inset:0;width:100%;height:100%;border:0;border-radius:10px" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+        <a href="https://youtu.be/pt-0LgCVcUI" target="_blank" rel="noopener">ເປີດໃນ YouTube ↗</a>
+      </div>
+
+      <div class="song">
+        <b>▶ Song 4</b>
+        <div style="position:relative;padding-top:56.25%;margin-top:10px">
+          <iframe src="https://www.youtube-nocookie.com/embed/rPZIiRQNXjk" style="position:absolute;inset:0;width:100%;height:100%;border:0;border-radius:10px" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+        <a href="https://youtu.be/rPZIiRQNXjk" target="_blank" rel="noopener">ເປີດໃນ YouTube ↗</a>
+      </div>
+
+      <div style="margin-top: 18px;"><button class="ghost" onclick="showSection('')">← Close</button></div>
+    </section>
+
+    <!-- Photos Section (6 Photos Gallery) -->
+    <section id="photos" class="panel section hidden">
+      <h2>📷 Our Memories</h2>
+      <p class="tiny">ຮູບພາບຄວາມຊົງຈຳທັງ 6 ຮູບ</p>
+      <div class="photo-grid">
+        <img src="photo1.jpeg" alt="Memory 1">
+        <img src="photo2.jpeg" alt="Memory 2">
+        <img src="photo3.jpeg" alt="Memory 3">
+        <img src="photo4.jpg" alt="Memory 4">
+        <img src="photo5.jpg" alt="Memory 5">
+        <img src="photo6.jpeg" alt="Memory 6">
+      </div>
+      <div style="margin-top: 18px;"><button class="ghost" onclick="showSection('')">← Close</button></div>
+    </section>
+
+    <!-- Letters Section -->
+    <section id="letters" class="panel section hidden">
+      <h2>💌 Letters for You</h2>
+      <p class="tiny">ຂໍ້ຄວາມຈາກໃຈ</p>
+      <div class="letter">
+        <b>Happy Birthday 🎂</b>
+        <p>ສຸກສັນວັນເກີດເດີ my favourite person ໃນມື້ທີ່ພິເສດຂອງພິມມື້ນີ້ ຊິຂໍໃຫ້ພິມພົບເຈີແຕ່ສິ່ງດີໆ ຂໍໃຫ້ທຸກໆມື້ຂອງພິມເຕັມໄປດ້ວຍຮອຍຍິ້ມ ສຽງຫົວ ແລະ ຄວາມສຸກ. ຂໍໃຫ້ພິມສຸຂະພາບແຂງແຮງ ບໍ່ເຈັບບໍ່ປ່ວຍ ຂໍໃຫ້ສິ່ງທີ່ພິມຕັ້ງໃຈໄວ້ຄ່ອຍໆກາຍເປັນຄວາມຈິງສົມດັ່ງປາຖະໜາ ແລະ ຂໍໃຫ້ທຸກກ້າວທີ່ພິມຍ່າງໄປມີແຕ່ຄວາມສຳເລັດ. ຂໍໃຫ້ທຸກສິ່ງທີ່ manifest ໄວ້ເປັນຈິງແບບໄວວາ ມີຄວາມສຸກກັບສິ່ງນ້ອຍໆໃນທຸກມື້ ບໍ່ວ່າຈະເຈີກັບບັນຫາຫຍັງ ເລົ່າໃຫ້ຟັງໄດ້ແລ້ວຈະຮູ້ວ່າບັນຫາຕອນຢູ່ນຳຊິມັນແຢ້ກວ່າ555ແລະຂໍໃຫ້ຜ່ານມັນໄປໄດ້ດ້ວຍດີມີຄວາມສຸກຕະຫຼອດໄປ.
+
+ຂໍໃຫ້ພິມຮັກແລະເບິ່ງແຍງຕົວເອງດີໆຂໍໃຫ້ມີຄົນດີໆຢູ່ຮອບຂ້າງຢ່າປ່ອຍໃຫ້ໃຜມາທຳລ້າຍຄວາມຮູ້ສຶກຂອງພິມໄດ້ ແລະ ຄອຍຊັບພອດກັນ ແລະ ສ້າງຄວາມຊົງຈຳດີໆໄປນຳກັນອີກດົນໆຕະຫຼອດໄປ55,ຂໍໃຫ້ທຸກມື້ທີ່ຕື່ນຂຶ້ນມາເປັນມື້ທີ່ມີເຫດຜົນໃຫ້ພິມຍິ້ມໄດ້ຫຼືມີຄວາມສຸກໄດ້,ຂໍໃຫ້ທຸກຄໍ່າຄືນຫຼັບໄຫຼໄດ້ຢ່າງສະບາຍໃຈໂດຍບໍ່ຕ້ອງແບກຮັບເລື່ອງລາວໃດໄວ້ພຽງລຳພັງ,ຂໍໃຫ້ໂລກໃບນີ້ໃຈດີກັບພິມຫຼາຍເທົ່າກັບທີ່ຊິຢາກໃຫ້ພິມໃຈດີກັບຕົນເອງ🤍
+
+There are many things that I would like to say to you But I don't know how Because maybe You're gonna be the one that saves me And after all You're my wonderwall🤍</p>
+      </div>
+      <div style="margin-top: 18px;"><button class="ghost" onclick="showSection('')">← Close</button></div>
+    </section>
+
+    <!-- Birthday Cake Card -->
+    <div id="cake-card" class="panel center">
+      <div class="sub">MAKE A WISH</div>
+      <h2 style="margin-top: 6px;">Click the cake for your surprise</h2>
+      <div class="cake" id="cake" title="Click for a little surprise">🎂</div>
+      <p id="cakeMsg" class="subtitle-desc" style="margin-bottom: 0;">Happy birthday my princess🤍</p>
+    </div>
+
+    <div class="floating-pill" onclick="showSection('music')">🎵 Play music for Phimphailin</div>
+  </section>
+</main>
+
+<footer>Made with love by OSHI · For Phimphailin</footer>
+
+<script>
+const canvas = document.getElementById('bokeh-canvas');
+const ctx = canvas.getContext('2d');
+let particles = [];
+const colors = ['#f8a5c2', '#f7d794', '#778beb', '#e77f67', '#cf6a87', '#55efc4', '#a29bfe', '#ffffff'];
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
+
+function initParticles() {
+  particles = [];
+  let count = Math.min(75, Math.floor(window.innerWidth / 16));
+  for (let i = 0; i < count; i++) {
+    particles.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      r: Math.random() * 5 + 2,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      vx: (Math.random() - 0.5) * 0.35,
+      vy: -(Math.random() * 0.4 + 0.15),
+      alpha: Math.random() * 0.65 + 0.2,
+      blur: Math.random() > 0.65
+    });
+  }
+}
+
+function animateParticles() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  for (let p of particles) {
+    p.x += p.vx;
+    p.y += p.vy;
+    if (p.y < -10) { p.y = canvas.height + 10; p.x = Math.random() * canvas.width; }
+    if (p.x < -10) p.x = canvas.width + 10;
+    if (p.x > canvas.width + 10) p.x = -10;
+
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fillStyle = p.color;
+    ctx.globalAlpha = p.alpha;
+    if (p.blur) {
+      ctx.shadowBlur = 12;
+      ctx.shadowColor = p.color;
+    } else {
+      ctx.shadowBlur = 0;
+    }
+    ctx.fill();
+  }
+  ctx.globalAlpha = 1;
+  ctx.shadowBlur = 0;
+  requestAnimationFrame(animateParticles);
+}
+initParticles();
+animateParticles();
+
+function show(id) { document.getElementById(id).classList.remove('hidden'); }
+function hide(id) { document.getElementById(id).classList.add('hidden'); }
+
+function showSection(id) {
+  ['music', 'photos', 'letters'].forEach(x => hide(x));
+  if (id) {
+    show(id);
+    setTimeout(() => document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
+  }
+}
+
+document.getElementById('unlock').onclick = () => {
+  if (document.getElementById('pass').value === '161117') {
+    hide('gate');
+    show('gift');
+  } else {
+    document.getElementById('err').textContent = 'ລະຫັດບໍ່ຖືກ ລອງອີກຄັ້ງ ✨';
+  }
+};
+
+document.getElementById('pass').addEventListener('keydown', e => {
+  if (e.key === 'Enter') document.getElementById('unlock').click();
+});
+
+document.getElementById('openGift').onclick = () => {
+  hide('gift');
+  show('home');
+};
+
+document.getElementById('cake').onclick = () => {
+  document.getElementById('cakeMsg').textContent = 'Make a wish, Phimphailin! ✨ May all your dreams come true. Happy birthday my princess🤍';
+};
+</script>
+</body>
+</html>
